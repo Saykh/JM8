@@ -7,8 +7,10 @@
 
 </head>
 <body>
-    <h2>My profile</h2>
-
+    <h1>My profile</h1>
+    <input type="button" value="Exit"
+           onclick="window.location.href = 'logout'"/>
+    <br><br>
     Name:
         <span th:text="${user.name}"></span>
 
@@ -29,11 +31,8 @@
      Access rights:
         <th:block th:each="role : ${user.roles}">
                     <span th:text="${role.getRole()}"></span>
-                    <span>;</span>
-                </th:block>
+        </th:block>
     <br><br>
 
-    <input type="button" value="Exit"
-           onclick="window.location.href = 'logout'"/>
 </body>
 </html>
