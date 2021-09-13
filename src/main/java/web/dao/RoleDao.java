@@ -7,4 +7,5 @@ public interface RoleDao {
     List<Role> getAllRoles();
 
     void save(Role role);
+
 }

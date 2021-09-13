@@ -1,27 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New user</title>
+    <title>Add new User</title>
+
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/admin/save}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-    <br/>
-    <label for="lastName">Enter lastName: </label>
-    <input type="text" th:field="*{lastName}" id="lastName"/>
-    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName Error</div>
-    <br/>
-    <label for="email">Enter email: </label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
-    <br/>
-    <input type="submit" value="Create!"/>
+    <form th:method="POST" th:action="@{/admin/save}" th:object="${user}">
 
-</form>
+
+        <label for="login">Login </label>
+        <input type="text" th:field="*{username}" id="login"/>
+
+        <br/><br/>
+
+        <label for="password">Password </label>
+        <input type="text" th:field="*{password}" id="password"/>
+
+        <br/><br/>
+
+        <label for="name">Name </label>
+        <input type="text" th:field="*{name}" id="name"/>
+
+        <br/><br/>
+
+        <label for="surname">LastName </label>
+        <input type="text" th:field="*{lastName}" id="surname"/>
+
+        <br/><br/>
+
+        <label for="age">Age </label>
+        <input type="text" th:field="*{age}" id="age"/>
+
+        <br/><br/>
+
+        <label for="email">Email </label>
+        <input type="text" th:field="*{email}" id="email"/>
+
+        <br/><br/>
+        <p>Access rights:</p>
+
+        <input type="checkbox" name="roles" value="ROLE_USER" id="user" th:text="User"/>
+        <br/>
+        <input type="checkbox" name="roles" value="ROLE_ADMIN" id="admin" th:text="Admin"/>
+
+        <br/><br/>
+        <input type="submit" value="Add"/>
+
+    </form>
+
+</div>
 
 </body>
 </html>

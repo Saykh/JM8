@@ -2,53 +2,48 @@ package web.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Table(name = "table_roles")
+@Table(name = "roles")
 public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    private String Name;
-
-    @Transient
+    private long id;
+    private String role;
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
-
     public Role() {
-
     }
 
-    public Role(Long id) {
+    public Role(long id) {
         this.id = id;
     }
 
-    public Role(Long id, String Name) {
-        this.id = id;
-        this.Name = Name;
+    public Role(String role) {
+        this.role = role;
     }
 
-    public Long getId() {
+    public Role(long id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return Name;
+    public String getRole() {
+        return role;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Set<User> getUsers() {
@@ -61,15 +56,11 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return getName();
+        return role;
     }
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", Name='" + Name + '\'' +
-                ", users=" + users +
-                '}';
+        return role;
     }
 }

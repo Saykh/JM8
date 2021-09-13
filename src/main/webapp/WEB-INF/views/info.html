@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+</head>
+<body>
+    <h2>My profile</h2>
+
+    Name:
+        <span th:text="${user.name}"></span>
+
+    <br><br>
+    LastName:
+        <span th:text="${user.lastName}"></span>
+
+    <br><br>
+   Age:
+        <span th:text="${user.age}"></span>
+
+    <br><br>
+
+    Email:
+        <span th:text="${user.email}"></span>
+
+    <br><br>
+     Access rights:
+        <th:block th:each="role : ${user.roles}">
+                    <span th:text="${role.getRole()}"></span>
+                    <span>;</span>
+                </th:block>
+    <br><br>
+
+    <input type="button" value="Exit"
+           onclick="window.location.href = 'logout'"/>
+</body>
+</html>

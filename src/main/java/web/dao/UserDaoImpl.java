@@ -39,8 +39,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return entityManager.createQuery("SELECT u FROM User u WHERE u.login =:username", User.class).setParameter("username", username).getSingleResult();
+    public User getUserByUsername(String login) {
+        return entityManager.createQuery("SELECT u FROM User u WHERE u.login =:login", User.class).setParameter("login", login).getSingleResult();
     }
 
 }

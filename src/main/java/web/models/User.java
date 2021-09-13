@@ -3,38 +3,21 @@ package web.models;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table(name = "table_users")
+@Table(name = "users")
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    private String name;
-
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    private String lastName;
-
-    @NotEmpty(message = "Name should not be empty")
-    @Email(message = "Email should be valid")
-    private String email;
-
-    @Size(min = 5, message = "Must be at least 5 characters")
+    private long id;
     private String login;
-
-    @Size(min = 5, message = "Must be at least 5 characters")
     private String password;
-
+    private String name;
+    private String lastName;
+    private int age;
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Role> roles;
@@ -42,20 +25,21 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String lastName, String email, String login, String password, Set<Role> roles) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
+    public User(String login, String password, String name, String lastName, int age, String email, Set<Role> roles) {
         this.login = login;
         this.password = password;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
         this.roles = roles;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -83,17 +67,34 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public String getLogin() {
-        return login;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setLogin(String login) {
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
+    public void setUsername(String login) {
         this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return roles;
     }
 
     @Override
@@ -124,31 +125,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
     }
 }
 
