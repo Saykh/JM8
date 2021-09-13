@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-
 </head>
 <body>
     <h1>My profile</h1>
@@ -13,26 +12,20 @@
     <br><br>
     Name:
         <span th:text="${user.name}"></span>
-
     <br><br>
     LastName:
         <span th:text="${user.lastName}"></span>
-
     <br><br>
-   Age:
+    Age:
         <span th:text="${user.age}"></span>
-
     <br><br>
-
     Email:
         <span th:text="${user.email}"></span>
-
     <br><br>
-     Access rights:
+    Access rights:
         <th:block th:each="role : ${user.roles}">
                     <span th:text="${role.getRole()}"></span>
         </th:block>
     <br><br>
-
 </body>
 </html>

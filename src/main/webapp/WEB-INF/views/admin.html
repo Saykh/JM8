@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>List of Users</title>
-
 </head>
 <body>
     <h2>Users</h2>
@@ -31,7 +30,6 @@
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
-
             <td>
                 <th:block th:each="role : ${user.roles}">
                     <span th:text="${role.getRole()}"></span>
@@ -50,6 +48,5 @@
             </td>
         </tr>
     </table>
-
 </body>
 </html>
