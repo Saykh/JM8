@@ -8,4 +8,6 @@ public interface RoleDao {
 
     void save(Role role);
 
+    Role getRole(String role);
 }
+
