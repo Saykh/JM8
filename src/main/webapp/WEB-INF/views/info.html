@@ -10,6 +10,9 @@
     <input type="button" value="Exit"
            onclick="window.location.href = 'logout'"/>
     <br><br>
+    Login:
+    <span th:text="${user.username}"></span>
+    <br><br>
     Name:
         <span th:text="${user.name}"></span>
     <br><br>
